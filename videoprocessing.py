@@ -1,6 +1,10 @@
 import numpy as np
 import cv2
-
+"""
+Citations:
+https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html
+https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html
+"""
 cap = cv2.VideoCapture(0)
 
 while(True):

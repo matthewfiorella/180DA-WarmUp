@@ -2,6 +2,12 @@ import numpy as np
 import cv2
 from sklearn.cluster import KMeans
 
+"""
+Citations:
+https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html
+https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html
+https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097
+"""
 def find_histogram(clt):
     """
     create a histogram with k clusters
@@ -32,6 +38,7 @@ while(True):
     dominantColor = clt.cluster_centers_
     blank_image = np.zeros((100, 100, 3), np.uint8)
     blank_image[:,:,:] = dominantColor
+    blank_image = cv2. cvtColor(blank_image, cv2.COLOR_RGB2BGR)
     # Display the resulting frame
     cv2.imshow('frame', frame)
     cv2.imshow('dominant color', blank_image)
