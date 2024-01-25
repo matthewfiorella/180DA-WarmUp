@@ -1,0 +1,18 @@
+(a) With the google speech recognizer from the python speech processing library it seems I am
+able to reliably decode singular words. The latency is quite high unfortunately and a speech processor
+that runs offline may be preferable.
+
+(b) I would like the speech recognition to be fairly simple. I think for our game it should be used for
+menu operation and powerup activation. I think that the speech recognition would fail if its performance
+is especially time sensitive so its role in the game should be more procedural or additive rather
+than a core component of gameplay
+
+(c) I think for our game - which presumably is a bomb defuser or basektabll arcade - the accuracy
+of the speech recognition is fairly important. Although ideally latency won't be the overriding concern,
+correctness will be important for properly incorporating speech recognition. We can lower the threshold 
+for accuracy by minimizing the conseuquences of an incorrect speech input, but either potential game idea
+requires certain phrases to be said for an action to happen (powerups in basketball, key word in bomb defuser).
+
+(d) I think that we need a good microphone and relatively quiet conditions to ensure that the speech
+recognition will work well enough for our game. I think the problem of WiFi can be minimized by using an 
+offline speech recognizer
