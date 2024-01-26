@@ -16,7 +16,7 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("ece180d/rps/nn")
-
+    print("connected")
 # The callback of the client when it disconnects.
 def on_disconnect(client, userdata, rc):
     if rc != 0:
@@ -88,7 +88,6 @@ waiting = False
 selected = Move.PAPER
 comp_choice = None
 while running:
-
     if waiting: # Waiting for opponent move
         wait_msg = "Waiting for Opponent to Play Move..."
         replay_msg = "Press enter if you want to change your move"
