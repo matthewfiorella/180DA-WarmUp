@@ -1,0 +1,14 @@
+I think for our project PyQT is the most
+promising graphics library. Based off of this lab,
+PyGame seems limited in what it can accomplish. The 
+graphics capability of PyGame is mostly dependent on
+the programmers skill in defining shapes and positioning
+of sprites. The real utility of PyGame is the ease of
+start-up as I/O, Game Loops, and window management is 
+nicely abstracted. A library like PyQT which offers 
+more out of the box graphics functionality while 
+still providing window management and easy I/O 
+processing is ideal for our project. Buidling our
+project will be a time-intensive process, so rapid
+start-up time is not as important as ease of graphical
+development. This is why PyQT seems to be an idea fit.
