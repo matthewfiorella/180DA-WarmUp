@@ -1,0 +1,36 @@
+Task3 Q2
+
+There is considerable lag present between data registering on the mqtt subscriber and the imu publisher
+pushing data to the broker. For this lab I have mitigated this problem by using an extremely long interval
+of 8 seconds between IMU reads. Performing processing on the IMU itself would help slightly because rather
+than six messages being exchanged from the IMU to the broker, there would only be 1 message. However the 
+compute time per message could be a problem in slowing down the sampling rate for the IMU. The ideal way
+to get around this lag would be to use a direct form of communication like bluetooth which would avoid
+the delay that arises from going through the network twice.
+
+Task4 Q1
+
+I see gravity acceleration of 1g in whichever direction is facing downward when idle. If the down angle is
+not aligned with any of the x, y, or z axes, the 1g of acceleration is split according the degree pointing
+downward of each axis.
+
+Task4 Q2
+
+The values do not drift too much when idle, at least for the linear accelerations. I found that a good way
+to measure if an object is idle is to sum the squares of each directional acceleration and evaluate it against
+some threshold value.
+
+Task4 Q3
+
+I used linear accelerations with a decision tree. I first checked if the IMU was idle. If the IMU wasn't
+idle I evaluated the x and y accelerations. If these did not meet a threshold I determined that the motion
+wasn't a forward push and evaluated whether the motion was an upward thrust. I did this by evaluating the
+z acceleration.
+
+Task4 Q4
+
+I used the same features for the other three characteristics and added angular velocity as the measure
+to check if the motion was circular. The decision tree was identical to the prior question, except with
+an additional check for circular motion if the upward thrust criteria was not met. Another action relating
+more closely to linear acceleration may be easier to classify because then the same data points would be 
+relevant to each step in the decision tree.
