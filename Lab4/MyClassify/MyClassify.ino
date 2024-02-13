@@ -59,7 +59,7 @@ void loop() {
   float windowRx[WINDOW_SIZE], windowRy[WINDOW_SIZE], windowRz[WINDOW_SIZE];
   int i = 0;
   while (count < RUNS) {
-    if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable() && i < 10) {
+    if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable() && i < WINDOW_SIZE) {
       IMU.readAcceleration(x, y, z);
       IMU.readGyroscope(rx, ry, rz);
       float squared_accel = pow(x,2) + pow(y,2) + pow(z,2);
@@ -78,6 +78,7 @@ void loop() {
       windowRx[i] = rx;
       windowRy[i] = ry;
       windowRz[i] = rz;
+      /*
       Serial.print(x);
       Serial.print('\t');
       Serial.print(y);
@@ -89,6 +90,7 @@ void loop() {
       Serial.print(ry);
       Serial.print('\t');
       Serial.println(rz);
+      */
       i++;
     }
     else if (i == WINDOW_SIZE) {
@@ -106,6 +108,8 @@ void loop() {
       Serial.println("\t");
 
       float squared_accel = pow(avg_x, 2) + pow(avg_y, 2) + pow(avg_z, 2);
+      float x_y_accel = pow(avg_x, 2) + pow(avg_y, 2);
+      float z_accel = pow(avg_z, 2);
       float angular_vel = 0;
       // Check if Idle
       if (squared_accel < 1.2) {
@@ -115,18 +119,18 @@ void loop() {
       // Not Idle
       else {
           // Forward Push?
-          if (count_forward_motion != 0) {
+          if (x_y_accel >= 0.8) {
             Serial.println("Forward Push");
             total_forward += 1;
           }
           else {
             // Upward?
-            if (count_upward_motion != 0) {
+            if (z_accel >= 0.8) {
               Serial.println("Upward Lift");
               total_upward += 1;
             }
             else {
-              if ( angular_vel != 0) {
+              if (avg_rx >= 100 || avg_ry >= 100 || avg_rx <= -100 || avg_ry <= -100) {
                 Serial.println("circular motion");
                 total_circular += 1;
               }
@@ -145,6 +149,7 @@ void loop() {
           Serial.print("total generic non-idle: ");
           Serial.println(non_stationary);
         }
+      i = 0;
     }
   }
 
